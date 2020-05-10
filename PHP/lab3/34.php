@@ -6,13 +6,13 @@
 </head>
 <body>
     <?php
-    $con = mysqli_connect("localhost","root","","motoryzacja");
-    $result = mysqli_query($con, "SELECT * FROM samochody WHERE id = 1 OR id = 3");
+    $con = new PDO("mysql:host=localhost;dbname=motoryzacja","root","");
+    $result = $con->query("SELECT * FROM samochody WHERE id = 1 OR id = 3");
     $row;
-    while($row = mysqli_fetch_array($result)){
+    while($row = $result -> fetch()){
         echo $row['marka'] . ' ' . $row['model'] . ' ' . $row['pojemnosc']."<br>";
     }
-    mysqli_close($con);
+    $result -> closeCursor();
     ?>
 </body>
 </html>
